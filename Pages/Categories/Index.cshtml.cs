@@ -9,7 +9,7 @@ using Fodor_Emanuela_lab2.Data;
 using Fodor_Emanuela_lab2.Models;
 using Fodor_Emanuela_lab2.Models.ViewModels;
 
-namespace Fodor_Emanuela_lab2.Pages.Publishers
+namespace Fodor_Emanuela_lab2.Pages.Categories
 {
     public class IndexModel : PageModel
     {
@@ -20,25 +20,27 @@ namespace Fodor_Emanuela_lab2.Pages.Publishers
             _context = context;
         }
 
-        public IList<Publisher> Publisher { get;set; } = default!;
+        public IList<Category> Category { get;set; } = default!;
 
-        public PublisherIndexData PublisherData { get; set; }
-        public int PublisherID { get; set; }
+        public CategoriesIndexData CategoriesData { get; set; }
+        public int CategoryID { get; set; }
         public int BookID { get; set; }
         public async Task OnGetAsync(int? id, int? bookID)
         {
-            PublisherData = new PublisherIndexData();
-            PublisherData.Publishers = await _context.Publisher
-            .Include(i => i.Books)
-            .ThenInclude(c => c.Author)
-            .OrderBy(i => i.PublisherName)
+            CategoriesData = new CategoriesIndexData();
+            CategoriesData.Categories = await _context.Category
+            .Include(i => i.BookCategories)
+            .ThenInclude(c => c.Book)
+            .ThenInclude(c=>c.Author)
+            .OrderBy(i => i.CategoryName)
             .ToListAsync();
             if (id != null)
             {
-                PublisherID = id.Value;
-                Publisher publisher = PublisherData.Publishers
+                CategoryID = id.Value;
+                Category category = CategoriesData.Categories
                 .Where(i => i.ID == id.Value).Single();
-                PublisherData.Books = publisher.Books;
+                ICollection<BookCategory>? bookCategories = category.BookCategories;
+                CategoriesData.Books = (List<Book>)bookCategories;
             }
         }
     }

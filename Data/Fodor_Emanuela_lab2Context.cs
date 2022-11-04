@@ -13,10 +13,25 @@ namespace Fodor_Emanuela_lab2.Data
             : base(options)
         {
         }
+        /*protected override void onModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BookCategory>()
+                .HasOne(b => b.Book)
+                .WithMany(ba => ba.BookCategories)
+                .HasForeignKey(bi => bi.BookID);
+
+           /* modelBuilder.Entity<Author>()
+                .HasOne(b => b.Author)
+                .WithMany(ba => ba.BookCategories)
+                .HasForeignKey(bi => bi.AuthorID);*/
+
+           // base.OnModelCreating(modelBuilder);
 
         public DbSet<Fodor_Emanuela_lab2.Models.Book> Book { get; set; } = default!;
 
         public DbSet<Fodor_Emanuela_lab2.Models.Publisher> Publisher { get; set; }
         public DbSet<Fodor_Emanuela_lab2.Models.Author> Author { get; set; }
+        public DbSet<Fodor_Emanuela_lab2.Models.Category> Category { get; set; }
+       // public DbSet<Fodor_Emanuela_lab2.Models.BookCategory> BookCategories { get; set; }
     }
 }

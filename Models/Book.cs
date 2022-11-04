@@ -25,6 +25,9 @@ namespace Fodor_Emanuela_lab2.Models
         
         public Author? Author { get; set; } //navigation property
 
+        //public ICollection<BookCategory>? BookCategories { get; set; }
+        public List<BookCategory> BookCategories { get; set; }
+
     } 
 }
 
