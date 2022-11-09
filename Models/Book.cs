@@ -27,6 +27,7 @@ namespace Fodor_Emanuela_lab2.Models
 
         //public ICollection<BookCategory>? BookCategories { get; set; }
         public List<BookCategory> BookCategories { get; set; }
+        public Borrowing? Borrowing { get; set; } //navigation property
 
     } 
 }

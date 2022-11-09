@@ -39,8 +39,9 @@ namespace Fodor_Emanuela_lab2.Pages.Categories
                 CategoryID = id.Value;
                 Category category = CategoriesData.Categories
                 .Where(i => i.ID == id.Value).Single();
+                //CategoriesData.Books = category.Books;
                 ICollection<BookCategory>? bookCategories = category.BookCategories;
-                CategoriesData.Books = (List<Book>)bookCategories;
+               // CategoriesData.Books = (List<Book>)bookCategories;
             }
         }
     }

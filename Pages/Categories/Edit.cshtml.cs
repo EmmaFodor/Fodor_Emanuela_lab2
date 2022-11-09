@@ -30,7 +30,7 @@ namespace Fodor_Emanuela_lab2.Pages.Categories
                 return NotFound();
             }
 
-            var category =  await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
+            var category =  await _context.Category.Include("BookCategory").FirstOrDefaultAsync(m => m.ID == id);
             if (category == null)
             {
                 return NotFound();
