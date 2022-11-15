@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Fodor_Emanuela_lab2.Data;
 using Fodor_Emanuela_lab2.Models;
 using Fodor_Emanuela_lab2.Models.ViewModels;
+using Newtonsoft.Json;
+using System.Security.AccessControl;
 
 namespace Fodor_Emanuela_lab2.Pages.Categories
 {
@@ -34,13 +36,19 @@ namespace Fodor_Emanuela_lab2.Pages.Categories
             .ThenInclude(c=>c.Author)
             .OrderBy(i => i.CategoryName)
             .ToListAsync();
+
+
             if (id != null)
             {
+                Console.WriteLine(id);
+
                 CategoryID = id.Value;
                 Category category = CategoriesData.Categories
                 .Where(i => i.ID == id.Value).Single();
+
                 //CategoriesData.Books = category.Books;
                 ICollection<BookCategory>? bookCategories = category.BookCategories;
+
                // CategoriesData.Books = (List<Book>)bookCategories;
             }
         }
