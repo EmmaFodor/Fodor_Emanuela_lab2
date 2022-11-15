@@ -10,9 +10,12 @@ using Fodor_Emanuela_lab2.Models;
 using Fodor_Emanuela_lab2.Models.ViewModels;
 using Newtonsoft.Json;
 using System.Security.AccessControl;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Fodor_Emanuela_lab2.Pages.Categories
 {
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         private readonly Fodor_Emanuela_lab2.Data.Fodor_Emanuela_lab2Context _context;

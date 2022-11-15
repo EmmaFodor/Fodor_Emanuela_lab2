@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Fodor_Emanuela_lab2.Data;
 using Fodor_Emanuela_lab2.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Fodor_Emanuela_lab2.Pages.Publishers
 {
+    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly Fodor_Emanuela_lab2.Data.Fodor_Emanuela_lab2Context _context;
